@@ -16,25 +16,24 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        this.receivedEvent('deviceready');
         
         // Add event listeners
-        window.addEventListener("batterystatus", this.onBatteryStatus, false);
+        window.addEventListener("batterystatus", onBatteryStatus, false);
     },
     
-    onBatteryStatus: function (status) {
-        var batteryLevel = (status && status.level) ? status.level : 0;
-        var isBatteryPlugged = (status && status.isPlugged) ? status.isPlugged : false;
+    // onBatteryStatus: function (status) {
+    //     var batteryLevel = (status && status.level) ? status.level : 0;
+    //     var isBatteryPlugged = (status && status.isPlugged) ? status.isPlugged : false;
         
-        var className = calculateBatterySpanClassName(batteryLevel);
+    //     var className = calculateBatterySpanClassName(batteryLevel);
         
-        document.getElementById("batterySpan").className = className;
-        document.getElementById("batteryPercent").innerHTML = status.level + " %";
-    },
+    //     document.getElementById("batterySpan").className = className;
+    //     document.getElementById("batteryPercent").innerHTML = status.level + " %";
+    // },
 
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-
         console.log('Received Event: ' + id);
     }
 };
@@ -46,3 +45,13 @@ function  calculateBatterySpanClassName(level) {
     if (level >= 0 && level < 25) return "battery level-0";
     return "battery level-0";
 };
+
+function onBatteryStatus(status) {
+    var batteryLevel = (status && status.level) ? status.level : 0;
+    var isBatteryPlugged = (status && status.isPlugged) ? status.isPlugged : false;
+    
+    var className = calculateBatterySpanClassName(batteryLevel);
+    
+    document.getElementById("batterySpan").className = className;
+    document.getElementById("batteryPercent").innerHTML = status.level + " %";
+},
