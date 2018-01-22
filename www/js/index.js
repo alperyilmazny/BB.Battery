@@ -21,15 +21,6 @@ var app = {
         // Add event listeners
         window.addEventListener("batterystatus", this.onBatteryStatus, false);
     },
-
-    calculateBatterySpanClassName1: function(level) {alert(level);
-        if (level >= 75 && level < 100) return "battery level-75";
-        if (level >= 50 && level < 75) return "battery level-50";
-        if (level >= 25 && level < 50) return "battery level-25";
-        if (level >= 0 && level < 25) return "battery level-0";
-
-        return "battery";
-    },
     
     onBatteryStatus: function (status) {
         var batteryLevel = (status && status.level) ? status.level : 0;
