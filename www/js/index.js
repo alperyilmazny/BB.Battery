@@ -10,9 +10,6 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-
-        // Add event listeners
-        window.addEventListener("batterystatus", this.onBatteryStatus, false);
     },
     // deviceready Event Handler
     //
@@ -20,6 +17,9 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        
+        // Add event listeners
+        window.addEventListener("batterystatus", this.onBatteryStatus, false);
     },
 
     calculateBatterySpanClassName1: function(level) {alert(level);
